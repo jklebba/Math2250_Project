@@ -21,7 +21,7 @@ int NumRows(vector<vector<double>> matrix)
 //Return number of columns of a matrix
 int NumCols(vector<vector<double>> matrix)
 {
-    int maxCols=0;
+    size_t maxCols=0;
     for(int i=0;i<NumRows(matrix);i++)
     {
         if(matrix[i].size() > maxCols)
@@ -30,6 +30,17 @@ int NumCols(vector<vector<double>> matrix)
         }
     }
     return maxCols;
+}
+
+//Check if a matrix is square
+bool checkSquare(vector<vector<double>> matrixA)
+{
+    if(NumRows(matrixA) == NumCols(matrixA))
+    {
+        return true;
+    }
+    cout << "Error: The matrice must be square." << endl;
+    return false;
 }
 
 //Check if two matrices have the same dimensions
@@ -58,8 +69,8 @@ bool checkMultiplyDim(vector<vector<double>> matrixA, vector<vector<double>> mat
 //i.e. make sure each row has the same number of elements
 bool checkConsistentDims(vector<vector<double>> matrix)
 {
-    int rowLength=matrix[0].size();
-    for(int i=0;i<matrix.size();i++)
+    size_t rowLength=matrix[0].size();
+    for(size_t i=0;i<matrix.size();i++)
     {
         if(matrix[i].size() != rowLength)
         {
@@ -84,7 +95,7 @@ bool checkNumericalVals(vector<vector<string>> matrix)
             bool fail = true;
             for(char const &c: element)
             {
-            for(int k=0; k<accept.size();k++)
+            for(size_t k=0; k<accept.size();k++)
             {
                 
                     if(c == accept[k])
