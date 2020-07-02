@@ -19,9 +19,9 @@ void print(vector<vector<double>> matrix)
     cout << setprecision(4);
 
     //set appropriate cout display width
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             if (matrix[i][j] / 9999 > 1.0)
             {
@@ -37,20 +37,21 @@ void print(vector<vector<double>> matrix)
 
     //print matrix elements
     cout << " [";
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
         if (i != 0)
         {
             cout << "]" << endl
                  << " [";
         }
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             cout.width(coutWidth);
             cout << matrix[i][j] << " ";
         }
     }
     cout << "]" << endl << endl;;
+
 
     return;
 }
@@ -64,9 +65,9 @@ void print(vector<vector<double>> matrix, string op)
     cout << setprecision(4);
 
     //set appropriate cout display width
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             if (matrix[i][j] / 9999 > 1.0)
             {
@@ -82,16 +83,16 @@ void print(vector<vector<double>> matrix, string op)
 
     //print matrix elements
     bool beenDone = false;
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
         cout << "[";
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             cout.width(coutWidth);
             cout << matrix[i][j] << " ";
         }
         cout << "]";
-        if (i == NumRows(matrix) / 2 && !beenDone)
+        if ((i == (unsigned)NumRows(matrix) / 2) && !beenDone)
         {
             cout << "  " << op << "  =";
             beenDone = true;
@@ -111,9 +112,9 @@ void print(vector<vector<string>> matrix)
     cout << setprecision(4);
 
     //set appropriate cout display width
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             if (matrix[i][j].size() > 4)
             {
@@ -129,14 +130,14 @@ void print(vector<vector<string>> matrix)
 
     //print matrix elements
     cout << " [";
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
         if (i != 0)
         {
             cout << "]" << endl
                  << " [";
         }
-        for (int j = 0; j < matrix[i].size(); j++)
+        for (size_t j = 0; j < matrix[i].size(); j++)
         {
             cout.width(coutWidth);
             cout << matrix[i][j] << " ";
@@ -156,9 +157,9 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
     cout << setprecision(4);
 
     //set appropriate cout display width
-    for (int i = 0; i < matrixA.size(); i++)
+    for (size_t i = 0; i < matrixA.size(); i++)
     {
-        for (int j = 0; j < matrixA[i].size(); j++)
+        for (size_t j = 0; j < matrixA[i].size(); j++)
         {
             if (matrixA[i][j] / 9999 > 1.0)
             {
@@ -172,9 +173,9 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
         }
     }
 
-    for (int i = 0; i < matrixB.size(); i++)
+    for (size_t i = 0; i < matrixB.size(); i++)
     {
-        for (int j = 0; j < matrixB[i].size(); j++)
+        for (size_t j = 0; j < matrixB[i].size(); j++)
         {
             if (matrixB[i][j] / 9999 > 1.0)
             {
@@ -235,9 +236,9 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
     cout << setprecision(4);
 
     //set appropriate cout display width
-    for (int i = 0; i < matrixA.size(); i++)
+    for (size_t i = 0; i < matrixA.size(); i++)
     {
-        for (int j = 0; j < matrixA[i].size(); j++)
+        for (size_t j = 0; j < matrixA[i].size(); j++)
         {
             if (matrixA[i][j] / 9999 > 1.0)
             {
@@ -251,9 +252,9 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
         }
     }
 
-    for (int i = 0; i < matrixB.size(); i++)
+    for (size_t i = 0; i < matrixB.size(); i++)
     {
-        for (int j = 0; j < matrixB[i].size(); j++)
+        for (size_t j = 0; j < matrixB[i].size(); j++)
         {
             if (matrixB[i][j] / 9999 > 1.0)
             {

@@ -84,6 +84,25 @@ void promptUser()
             return;
         }
     }
+    else if (operation == "RREF" || operation == "rref" || operation == "Rref")
+    {
+        print(matrixA,"RREF");
+        if (!rref(matrixA, result))
+        {
+            return;
+        }
+    }
+    else if (operation == "det" || operation == "determinant" || operation == "Determinant")
+    {
+        print(matrixA,"Determinant");
+        double determinantResult;
+        if (!determinant(matrixA, determinantResult))
+        {
+            return;
+        }
+        cout << " " << determinantResult << endl;
+        return;
+    }
     else
     {
         cout << "Error: Unrecognized matrix operation.";
@@ -107,7 +126,7 @@ bool processArgs(vector<string> inputArgs, string operation, vector<vector<doubl
     //Detemine if the operation takes two matrices or not
     vector<string> list = {"mult", "Mult", "multiply", "Multiply", "Add", "add", "subtract", "Subtract"};
     bool Op2 = false;
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
         if (operation == list[i])
         {
@@ -167,7 +186,7 @@ bool getMatrix(string str, vector<vector<double>> &matrix, bool file)
     {
         vector<string> rows;
         rows = getRows(str);
-        for (int i = 0; i < rows.size(); ++i)
+        for (size_t i = 0; i < rows.size(); ++i)
         {
             elementsStr.push_back(getElements(rows[i]));
         }
@@ -197,10 +216,10 @@ bool getMatrix(string str, vector<vector<double>> &matrix, bool file)
     }
     
     //Convert string matrix to doubles
-    for (int i = 0; i < elementsStr.size(); i++)
+    for (size_t i = 0; i < elementsStr.size(); i++)
     {
         vector<double> row;
-        for (int j = 0; j < elementsStr[i].size(); j++)
+        for (size_t j = 0; j < elementsStr[i].size(); j++)
         {
             row.push_back(stod(elementsStr[i][j]));
         }
@@ -291,7 +310,7 @@ void displayInstructions()
     cout << "       <matrix operation> <matrix1> [matrix2] [file]" << endl
          << endl;
     cout << "Enter whitespace only between arguments, not within arguments. The arguments in square brackets are optional." << endl;
-    cout << "Operations include 'tranpose', 'multiply', 'add', 'subtract'" << endl
+    cout << "Operations include 'tranpose', 'multiply', 'add', 'subtract', 'determinant', 'rref'" << endl
          << endl;
     cout << "Enter matrices with commas separarting row elements and semicolons separating rows." << endl
          << endl;
