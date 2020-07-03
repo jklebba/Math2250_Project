@@ -18,6 +18,32 @@ void print(vector<vector<double>> matrix)
     int largeNumWidth = 11;
     cout << setprecision(4);
 
+    //ensure evenly spaced columns
+    int maxbuff = 0;
+    for (size_t i = 0; i < matrix.size(); i++)
+    {
+        for (size_t j = 0; j < matrix[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrix[i][j]);
+            while ((val * 10 < 1) && buff < 3)
+            {
+            
+                buff++;
+                val = val * 10;
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+        }
+    }
+
+    if (maxbuff != 0)
+    {
+        coutWidth = coutWidth + maxbuff + 3;
+    }
+
     //set appropriate cout display width
     for (size_t i = 0; i < matrix.size(); i++)
     {
@@ -35,6 +61,7 @@ void print(vector<vector<double>> matrix)
         }
     }
 
+   
     //print matrix elements
     cout << " [";
     for (size_t i = 0; i < matrix.size(); i++)
@@ -64,6 +91,32 @@ void print(vector<vector<double>> matrix, string op)
     int largeNumWidth = 11;
     cout << setprecision(4);
 
+    //ensure evenly spaced columns
+    int maxbuff = 0;
+    for (size_t i = 0; i < matrix.size(); i++)
+    {
+        for (size_t j = 0; j < matrix[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrix[i][j]);
+            while ((val * 10 < 1) && buff < 3)
+            {
+                
+                buff++;
+                val = val * 10;
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+        }
+    }
+
+    if (maxbuff != 0)
+    {
+        coutWidth = coutWidth + maxbuff + 3;
+    }
+
     //set appropriate cout display width
     for (size_t i = 0; i < matrix.size(); i++)
     {
@@ -80,6 +133,8 @@ void print(vector<vector<double>> matrix, string op)
             break;
         }
     }
+
+    
 
     //print matrix elements
     bool beenDone = false;
@@ -156,6 +211,56 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
     int largeNumWidth = 10;
     cout << setprecision(4);
 
+
+
+    //ensure even spacing of columns
+    int maxbuff = 0;
+    for (size_t i = 0; i < matrixA.size(); i++)
+    {
+        for (size_t j = 0; j < matrixA[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrixA[i][j]);
+            while (((val * 10) < 1) && buff < 3)
+            {
+           
+                buff++;
+                val = val * 10;
+
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+
+        }
+    }
+
+
+    for (size_t i = 0; i < matrixB.size(); i++)
+    {
+        for (size_t j = 0; j < matrixB[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrixB[i][j]);
+            while ((val * 10 < 1) && buff < 3)
+            {
+                buff++;
+                val = val * 10;
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+        }
+    }
+
+    if (maxbuff != 0)
+    {
+        coutWidth = coutWidth + maxbuff + 3;
+    }
+
+
     //set appropriate cout display width
     for (size_t i = 0; i < matrixA.size(); i++)
     {
@@ -188,6 +293,8 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
             break;
         }
     }
+
+    
 
     //print matrix elements
     int rowsA = NumRows(matrixA);
@@ -235,6 +342,55 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
     int largeNumWidth = 11;
     cout << setprecision(4);
 
+    //ensure even spacing of columns
+    int maxbuff = 0;
+    for (size_t i = 0; i < matrixA.size(); i++)
+    {
+        for (size_t j = 0; j < matrixA[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrixA[i][j]);
+            while (((val * 10) < 1) && buff < 3)
+            {
+                
+                buff++;
+                val = val * 10;
+
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+
+        }
+    }
+
+
+    for (size_t i = 0; i < matrixB.size(); i++)
+    {
+        for (size_t j = 0; j < matrixB[i].size(); j++)
+        {
+            int buff = 0;
+            double val = abs(matrixB[i][j]);
+            while ((val * 10 < 1) && buff < 3)
+            {  
+                buff++;
+                val = val * 10;
+            }
+            if (buff > maxbuff)
+            {
+                maxbuff = buff;
+            }
+        }
+    }
+
+    if (maxbuff != 0)
+    {
+        coutWidth = coutWidth + maxbuff + 3;
+    }
+
+
+
     //set appropriate cout display width
     for (size_t i = 0; i < matrixA.size(); i++)
     {
@@ -268,6 +424,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
         }
     }
 
+    
     //print matrix elements
     int rowsA = NumRows(matrixA);
     int rowsB = NumRows(matrixB);
@@ -276,8 +433,16 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
 
     bool beenDone = false;
     for (int i = 0; i < max(rowsA, rowsB); i++)
-    {
-        int currColsA = matrixA[i].size();
+    {   
+        int currColsA;
+        if (i >= rowsA)
+        {
+            currColsA = 0;
+        }
+        else
+        {
+            currColsA = matrixA[i].size();
+        }
 
         if (i < rowsA)
         {
@@ -326,7 +491,16 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
             cout << "     ";
         }
 
-        int currColsB = matrixB[i].size();
+        int currColsB;
+        if (i >= rowsB)
+        {
+            currColsB = 0;
+        }
+        else
+        {
+            currColsB = matrixB[i].size();
+        }
+
         if (i < rowsB)
         {
             cout << "[";
