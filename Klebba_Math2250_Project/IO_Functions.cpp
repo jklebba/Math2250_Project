@@ -39,9 +39,11 @@ void promptUser()
         return;
     }
 
+    //separate input arugments
     vector<string> inputArgs;
     inputArgs = splitString(input, ' ');
 
+    //init vars for matrices and operation
     vector<vector<double>> matrixA;
     vector<vector<double>> matrixB;
     string operation;
@@ -102,6 +104,22 @@ void promptUser()
         }
         cout << " " << determinantResult << endl;
         return;
+    }
+    else if (operation == "adjoint" || operation == "adj" || operation == "Adjoint")
+    {
+        print(matrixA, "Adjoint");
+        if (!adjoint(matrixA, result))
+        {
+            return;
+        }
+    }
+    else if (operation == "inverse" || operation == "Inverse" || operation == "inv")
+    {
+        print(matrixA, "Inverse");
+        if (!inverse(matrixA, result))
+        {
+            return;
+        }
     }
     else
     {
