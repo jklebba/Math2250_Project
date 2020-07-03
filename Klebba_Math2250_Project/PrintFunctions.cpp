@@ -5,10 +5,14 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <cmath>
+#include "algorithm"
+
 #include "IO_Functions.h"
 #include "PrintFunctions.h"
 #include "CheckMatrices.h"
-#include "algorithm"
+
+
 
 //Print a singel matrix
 void print(vector<vector<double>> matrix)
