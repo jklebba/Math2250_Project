@@ -18,7 +18,7 @@
 void print(vector<vector<double>> matrix)
 {
     //cout settings to ensure nice formatting
-    int coutWidth = 5;
+    int coutWidth = 7;
     int largeNumWidth = 11;
     cout << setprecision(4);
 
@@ -30,7 +30,7 @@ void print(vector<vector<double>> matrix)
         {
             int buff = 0;
             double val = abs(matrix[i][j]);
-            while ((val * 10 < 1) && buff < 3)
+            while ((val * 10 < 1) && buff < 3 && val != 0)
             {
             
                 buff++;
@@ -45,7 +45,7 @@ void print(vector<vector<double>> matrix)
 
     if (maxbuff != 0)
     {
-        coutWidth = coutWidth + maxbuff + 3;
+        coutWidth = coutWidth + maxbuff + 1;
     }
 
     //set appropriate cout display width
@@ -53,7 +53,7 @@ void print(vector<vector<double>> matrix)
     {
         for (size_t j = 0; j < matrix[i].size(); j++)
         {
-            if (matrix[i][j] / 9999 > 1.0)
+            if (abs(matrix[i][j]) / 9999 > 1.0)
             {
                 coutWidth = largeNumWidth;
                 break;
@@ -91,7 +91,7 @@ void print(vector<vector<double>> matrix)
 void print(vector<vector<double>> matrix, string op)
 {
     //cout settings to ensure nice formatting
-    int coutWidth = 5;
+    int coutWidth = 7;
     int largeNumWidth = 11;
     cout << setprecision(4);
 
@@ -103,7 +103,7 @@ void print(vector<vector<double>> matrix, string op)
         {
             int buff = 0;
             double val = abs(matrix[i][j]);
-            while ((val * 10 < 1) && buff < 3)
+            while ((val * 10 < 1) && buff < 3 && val != 0)
             {
                 
                 buff++;
@@ -118,7 +118,7 @@ void print(vector<vector<double>> matrix, string op)
 
     if (maxbuff != 0)
     {
-        coutWidth = coutWidth + maxbuff + 3;
+        coutWidth = coutWidth + maxbuff + 1;
     }
 
     //set appropriate cout display width
@@ -126,7 +126,7 @@ void print(vector<vector<double>> matrix, string op)
     {
         for (size_t j = 0; j < matrix[i].size(); j++)
         {
-            if (matrix[i][j] / 9999 > 1.0)
+            if (abs(matrix[i][j]) / 9999 > 1.0)
             {
                 coutWidth = largeNumWidth;
                 break;
@@ -166,7 +166,7 @@ void print(vector<vector<double>> matrix, string op)
 void print(vector<vector<string>> matrix)
 {
     //cout settings to ensure nice formatting
-    int coutWidth = 5;
+    int coutWidth = 7;
     int largeNumWidth = 11;
     cout << setprecision(4);
 
@@ -211,7 +211,7 @@ void print(vector<vector<string>> matrix)
 void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
 {
     //cout settings to ensure nice formatting
-    int coutWidth = 5;
+    int coutWidth = 7;
     int largeNumWidth = 10;
     cout << setprecision(4);
 
@@ -225,7 +225,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
         {
             int buff = 0;
             double val = abs(matrixA[i][j]);
-            while (((val * 10) < 1) && buff < 3)
+            while (((val * 10) < 1) && buff < 3 && val != 0)
             {
            
                 buff++;
@@ -247,7 +247,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
         {
             int buff = 0;
             double val = abs(matrixB[i][j]);
-            while ((val * 10 < 1) && buff < 3)
+            while ((val * 10 < 1) && buff < 3 && val != 0)
             {
                 buff++;
                 val = val * 10;
@@ -261,7 +261,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
 
     if (maxbuff != 0)
     {
-        coutWidth = coutWidth + maxbuff + 3;
+        coutWidth = coutWidth + maxbuff + 1;
     }
 
 
@@ -270,7 +270,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB)
     {
         for (size_t j = 0; j < matrixA[i].size(); j++)
         {
-            if (matrixA[i][j] / 9999 > 1.0)
+            if (abs(matrixA[i][j]) / 9999 > 1.0)
             {
                 coutWidth = largeNumWidth;
                 break;
@@ -342,7 +342,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
 {
 
     //cout settings to ensure nice formatting
-    int coutWidth = 5;
+    int coutWidth = 7;
     int largeNumWidth = 11;
     cout << setprecision(4);
 
@@ -354,7 +354,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
         {
             int buff = 0;
             double val = abs(matrixA[i][j]);
-            while (((val * 10) < 1) && buff < 3)
+            while (((val * 10) < 1) && buff < 3 && val != 0 && val != 0)
             {
                 
                 buff++;
@@ -376,7 +376,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
         {
             int buff = 0;
             double val = abs(matrixB[i][j]);
-            while ((val * 10 < 1) && buff < 3)
+            while ((val * 10 < 1) && buff < 3 && val != 0 && val != 0)
             {  
                 buff++;
                 val = val * 10;
@@ -390,7 +390,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
 
     if (maxbuff != 0)
     {
-        coutWidth = coutWidth + maxbuff + 3;
+        coutWidth = coutWidth + maxbuff + 1;
     }
 
 
@@ -400,7 +400,7 @@ void print(vector<vector<double>> matrixA, vector<vector<double>> matrixB, strin
     {
         for (size_t j = 0; j < matrixA[i].size(); j++)
         {
-            if (matrixA[i][j] / 9999 > 1.0)
+            if (abs(matrixA[i][j]) / 9999 > 1.0)
             {
                 coutWidth = largeNumWidth;
                 break;
