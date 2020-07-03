@@ -1,6 +1,7 @@
 //Matrix Operation Functions
 //Two dimensional vectors of doubles are used to represent matrices in these functions.
 
+#include "iostream"
 #include <cmath>
 #include <vector>
 #include "MatrixOperations.h"
@@ -132,6 +133,7 @@ bool rref(vector<vector<double>> matrix, vector<vector<double>> &result)
     //process each row from top to bottom of the matrix
     for (int row =0; row < rowCount; row++)
     {
+        //dont let leading go out of index bounds
         if (colCount <= leading)
         {
             break;
@@ -205,7 +207,7 @@ bool rref(vector<vector<double>> matrix, vector<vector<double>> &result)
 //got help from here https://rosettacode.org/wiki/Reduced_row_echelon_form
 
 
-//MATRIX COFACTOR (used in determinant function below)
+//MATRIX COFACTOR (used in determinant and adjoint functions below)
 //INPUTS: 'matrix'= base matrix, 'cofRow'= row to take cofactor, 'cofCol'= column to take cofactor
 //OUTPUTS: returns CoFactor matrix 'result'
 vector<vector<double>> cofactor(vector<vector<double>> matrix, int cofRow, int cofCol)
@@ -266,7 +268,7 @@ bool determinant(vector<vector<double>> matrix, double &result)
     }
 
     //init matrix to hold cofactor
-    vector<vector<double> > cofact( dim , vector<double> (dim, 0)); 
+    vector<vector<double> > cofact( dim-1 , vector<double> (dim-1, 0)); 
 
     //init sign term in the determinant equation
     int signTerm = 1;
@@ -275,7 +277,7 @@ bool determinant(vector<vector<double>> matrix, double &result)
     int row = 0;
     for(int col=0; col<dim; col++)
     {
-        //init variable to the determinant of the cofactor
+        //init variable for the determinant of the cofactors
         double cofactDet;
         //get the determinant of each cofactor
         cofact = cofactor(matrix,row,col);
@@ -292,3 +294,102 @@ bool determinant(vector<vector<double>> matrix, double &result)
     return true;
 }
 //Got help from here: https://www.geeksforgeeks.org/determinant-of-a-matrix/
+
+
+//MATRIX  ADJOINT
+//INPUTS: 'matrix' is the matrix to find Adjoint of. The resulting matrix is written to 'result'
+//OUTPUTS: returns 'false' if computation fails, 'true' otherwise.
+bool adjoint(vector<vector<double>> matrix, vector<vector<double>>& result)
+{
+    //make sure matrix is square
+    if (!checkSquare(matrix))
+    {
+        return false;
+    }
+    int dim = matrix.size();
+
+    //init adjoint matrix to fill in
+    vector<vector<double>> adjMatrix(dim, vector<double>(dim, 0));
+
+    //adjoint of 1x1 matrix is always the Identity matrix
+    if (dim == 1)
+    {
+        adjMatrix[0][0] = 1;
+        result = adjMatrix;
+        return true;
+    }
+
+    //iterate through the matrix elements
+    for (int row=0; row < dim; row++)
+    {
+        for (int col = 0; col < dim; col++)
+        {
+            //get cofactor matrix for this element
+            vector<vector<double>> cofact = cofactor(matrix, row, col);
+         
+            //compute sign of cofactor term
+            int sign;
+            if((row+col)%2 == 0)
+            {
+                sign = 1;
+            }
+            else
+            {
+                sign = -1;
+            }
+
+            //get determinant of cofactor matrix for this element
+            double det;
+            determinant(cofact, det);
+
+            //populate the adjoint matrix as the tranpose of the cofactor matrix
+            adjMatrix[col][row] = sign*det;
+        }
+    }
+    //write to result
+    result = adjMatrix;
+    return true;
+}
+//got help from here: https://www.geeksforgeeks.org/adjoint-inverse-matrix/
+
+
+//MATRIX  INVERSE
+//INPUTS: 'matrix' is the matrix to find the inverse of. The resulting matrix is written to 'result'
+//OUTPUTS: returns 'false' if the computation fails, 'true' otherwise.
+bool inverse(vector<vector<double>> matrix, vector<vector<double>>& result)
+{
+    //make sure matrix is square
+    if (!checkSquare(matrix))
+    {
+        return false;
+    }
+    int dim = matrix.size();
+
+    //Check if the matrix is not invertible by checking if determinant = 0
+    double det;
+    determinant(matrix, det);
+    if (det == 0)
+    {
+        cout << "Error: the matrix is not invertible." << endl;
+        return false;
+    }
+
+    //get adjoint of matrix
+    vector<vector<double>> adj;
+    adjoint(matrix, adj);
+
+    //init vector to build inverse matrix
+    vector<vector<double>> inv(dim, vector<double>(dim, 0));
+
+    //Use terms of adjoint matrix to calculate terms of inverse matrix
+    for (int row = 0; row < dim; row++)
+    {
+        for (int col = 0; col < dim; col++)
+        {
+            inv[row][col] = adj[row][col] / det;
+        }
+    }
+    //write to result
+    result = inv;
+    return true;
+}
