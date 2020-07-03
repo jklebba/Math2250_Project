@@ -15,6 +15,9 @@ using namespace std;
 //counter for filenames
 int resultCount = 0;
 
+//size for random matrices
+int randSize;
+
 
 //Get input from user, process input, and compute
 void promptUser()
@@ -48,6 +51,7 @@ void promptUser()
     vector<vector<double>> matrixB;
     string operation;
     operation = inputArgs[0];
+    randSize = 1 + (rand() % 4);
 
     //Process input arguments and populate matrices A and B if needed
     if (!processArgs(inputArgs, operation, matrixA, matrixB))
@@ -197,6 +201,21 @@ bool processArgs(vector<string> inputArgs, string operation, vector<vector<doubl
 //Returns false if there is an error, true otherwise
 bool getMatrix(string str, vector<vector<double>> &matrix, bool file)
 {
+    //handle request for random matrices
+    if(str == "random" || str=="Random" || str== "rand" || str == "Rand")
+    {
+        for(int i=0;i<randSize; i++)
+        {
+            vector<double>row;
+            matrix.push_back(row);
+            for(int j=0; j<randSize; j++)
+            {
+                matrix[i].push_back(rand() % 19);
+            }
+        }
+        return true;
+    }
+
     vector<vector<string>> elementsStr;
 
     //Put matrix elements into a 2d string vector
@@ -328,7 +347,7 @@ void displayInstructions()
     cout << "       <matrix operation> <matrix1> [matrix2] [file]" << endl
          << endl;
     cout << "Enter whitespace only between arguments, not within arguments. The arguments in square brackets are optional." << endl;
-    cout << "Operations include 'tranpose', 'multiply', 'add', 'subtract', 'determinant', 'rref'" << endl
+    cout << "Operations include 'tranpose', 'multiply', 'add', 'subtract', 'determinant', 'rref', 'adjoint', 'inverse'" << endl
          << endl;
     cout << "Enter matrices with commas separarting row elements and semicolons separating rows." << endl
          << endl;
@@ -351,11 +370,19 @@ void displayInstructions()
 
 void displayHelp()
 {
-    cout << "READING FROM FILES" << endl;
+    cout << "RANDOM MATRICES" << endl;
+    cout << "Input:" << endl;
+    cout << "                         add random random" << endl
+         << endl;
+    cout << "Will add two randomly generated matrices. To use randomly generated matrices replace the matrix argument with 'random'" << endl
+         << endl
+         << endl;
+
+    cout << "READING/WRITING TO FILES" << endl;
     cout << "Input:" << endl;
     cout << "                         multiply pathtofile1 pathtofile2 file" << endl
          << endl;
-    cout << "Will multiply the matrices found in the text files and write the result to a file. See the included example txt file for format." << endl;
+    cout << "Will multiply the matrices found in the text files and write the result to a file. See the included example files for file format." << endl;
     cout << "The paths can be replaced with file names if the files are in the same folder as the program's .exe file" << endl
          << endl
          << endl;
