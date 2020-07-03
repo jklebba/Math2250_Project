@@ -244,6 +244,7 @@ vector<vector<double>> cofactor(vector<vector<double>> matrix, int cofRow, int c
     }
     return result;
 }
+//Got help from here: https://www.geeksforgeeks.org/determinant-of-a-matrix/
 
 //MATRIX DETERMINANT
 //INPUTS: 'matrix' is the matrix to find the determinant of. The resulting matrix is written to 'result'
@@ -393,3 +394,4 @@ bool inverse(vector<vector<double>> matrix, vector<vector<double>>& result)
     result = inv;
     return true;
 }
+//got help from here: https://www.geeksforgeeks.org/adjoint-inverse-matrix/
