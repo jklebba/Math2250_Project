@@ -399,5 +399,7 @@ void displayHelp()
     cout << "                          [    2     6 ]" << endl;
     cout << "                          [    3     7 ]" << endl;
     cout << "                          [    4     8 ]" << endl << endl;
+
+    cout << "Operations include 'tranpose', 'multiply', 'add', 'subtract', 'determinant', 'rref', 'adjoint', 'inverse'" << endl << endl;
 }
 
